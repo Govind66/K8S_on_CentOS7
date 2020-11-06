@@ -38,3 +38,5 @@ Kubernetes on both the Ubuntu nodes.
    ```
    $ sudo docker run hello-world
    ```
+  ### This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+  ### Docker Engine is installed and running. You need to use ```sudo``` to run Docker commands. 
