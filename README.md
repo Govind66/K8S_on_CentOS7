@@ -117,7 +117,7 @@ Kubernetes on both the Ubuntu nodes.
       Then you can join any number of worker nodes by running the following on each as root:
 
       kubeadm join 172.31.38.20:6443 --token t1au9e.bcim6d05dw9wcz48 \
-      --discovery-token-ca-cert-hash sha256:bb3e1779c680c52d5df975285362b5f1e4f1f3b08c751b9ab058af4a7759ff5
+      --discovery-token-ca-cert-hash sha256:bb3e1779c680c52d5df975285362b5f1e4f1f3b08c751b9ab058af4a7759ff52
  ```
       
 
