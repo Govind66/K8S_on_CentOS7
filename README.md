@@ -12,35 +12,77 @@ Kubernetes on both the Ubuntu nodes.
    $sudo yum update -y       
    ```
 ### First you need to install Docker contair for orchestration purpose
-   a) Add the docker repo in yum.repod \n
+   * Add the docker repo in yum.repod \n
       ```
       sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
       ```
-   b) enables the nightly repository.
+   * enables the nightly repository.
       ```
       $sudo yum-config-manager --enable docker-ce-nightly      
       ```
-   c) Install the Docker utility on both the nodes by
+   * Install the Docker utility on both the nodes by
       running the following command as sudo in the Terminal
       of each node.
       ```
       $sudo yum install docker-ce docker-ce-cli containerd.io
       ```
-   d) Check the docker version.
+   * Check the docker version.
       ```
       $docker --version
       ```
-   e) Start Docker.
+   * Start Docker.
       ```
       $ sudo systemctl start docker
       ```
-   f) Verify that Docker Engine is installed correctly by running the ```hello-world``` image.
+   * Verify that Docker Engine is installed correctly by running the ```hello-world``` image.
       ```
       $ sudo docker run hello-world
       ```
       This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits. Docker Engine is installed and             running.     You need to use ```sudo``` to run Docker commands.
-## Step2:
-### K8S Deployment
-* Prerequisits
+## Step2: K8S Deployment
+
+### Prerequisits
+   * Installing kubeadm
+   * Letting iptables see bridged traffic
+   ```
+   cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+   net.bridge.bridge-nf-call-ip6tables = 1
+   net.bridge.bridge-nf-call-iptables = 1
+   EOF
+   sudo sysctl --system
+   ```
+ ### K8S installation
+ * Installing kubeadm, kubelet and kubectl
+   ```
+   cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+   [kubernetes]
+   name=Kubernetes
+   baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+   enabled=1
+   gpgcheck=1
+   repo_gpgcheck=1
+   gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   exclude=kubelet kubeadm kubectl
+   EOF
+
+* Set SELinux in permissive mode (effectively disabling it)
+   ```
+   sudo setenforce 0
+   ```
+   ```
+   sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+   ```
+   ```
+   sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+   ```
+   ```
+   sudo systemctl enable --now kubelet
+   ```
+### Notes:
+   * Setting SELinux in permissive mode by running setenforce 0 and sed ... effectively disables it. This is required to allow containers to access the host filesystem, which is      needed by pod networks for example. You have to do this until SELinux support is improved in the kubelet.
+
+   * You can leave SELinux enabled if you know how to configure it but it may require settings that are not supported by kubeadm.
+      The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to tell it what to do.
+
 
 
