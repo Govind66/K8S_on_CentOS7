@@ -12,21 +12,21 @@ Kubernetes on both the Ubuntu nodes.
  ```
  $sudo yum update -y       
  ```
- * Add the docker repo in yum.repod
+* Add the docker repo in yum.repod
  ```
  sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
  ```
- * enables the nightly repository.
+* enables the nightly repository.
  ```
   $sudo yum-config-manager --enable docker-ce-nightly      
   ```
- * Install the Docker utility on both the nodes by
+* Install the Docker utility on both the nodes by
    running the following command as sudo in the Terminal
    of each node.
    ```
    $sudo yum install docker-ce docker-ce-cli containerd.io
    ```
-   * Check the docker version.
+* Check the docker version.
    ```
    $docker --version
    ```
