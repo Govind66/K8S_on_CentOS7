@@ -48,17 +48,14 @@ Kubernetes on both the Ubuntu nodes.
    ```
 
 * On Master to give itʼs unique hostname.
-```
-sudo hostnamectl set-hostname master-node 
-```
+   ```
+   sudo hostnamectl set-hostname master-node 
+   ```
 * On Slave to give itʼs unique hostname.
-```
-sudo hostnamectl set-hostname slave-node
-```
-* Initialise kubernetes on master node.
    ```
-   sudo kubeadm init --pod-network-cidr=172.31.0.0/16
+   sudo hostnamectl set-hostname slave-node
    ```
+
    * Installing kubeadm
    * Letting iptables see bridged traffic
    ```
@@ -100,6 +97,11 @@ sudo hostnamectl set-hostname slave-node
 
    * You can leave SELinux enabled if you know how to configure it but it may require settings that are not supported by kubeadm.
       The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to tell it what to do.
+      
+   * Initialise kubernetes on master node.
+   ```
+   sudo kubeadm init --pod-network-cidr=172.31.0.0/16
+   ```
       
 
 
