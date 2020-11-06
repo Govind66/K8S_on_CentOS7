@@ -12,7 +12,7 @@ Kubernetes on both the Ubuntu nodes.
    $sudo yum update -y       
    ```
 ### First you need to install Docker contair for orchestration purpose
-   a) Add the docker repo in yum.repod
+   a) Add the docker repo in yum.repod \n
       ```
       sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
       ```
