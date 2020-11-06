@@ -9,17 +9,17 @@ have Kubernetes installed on them. Therefore, follow the steps described below t
 Kubernetes on both the Ubuntu nodes.
 
 * Update the OS
- ```
- $sudo yum update -y       
- ```
+   ```
+   $sudo yum update -y       
+   ```
 * Add the docker repo in yum.repod
- ```
- sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
- ```
+   ```
+   sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
+   ```
 * enables the nightly repository.
- ```
-  $sudo yum-config-manager --enable docker-ce-nightly      
-  ```
+   ```
+   $sudo yum-config-manager --enable docker-ce-nightly      
+   ```
 * Install the Docker utility on both the nodes by
    running the following command as sudo in the Terminal
    of each node.
