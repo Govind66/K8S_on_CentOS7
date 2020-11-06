@@ -30,3 +30,11 @@ Kubernetes on both the Ubuntu nodes.
    ```
    $docker --version
    ```
+* Start Docker.
+   ```
+   $ sudo systemctl start docker
+   ```
+* Verify that Docker Engine is installed correctly by running the ```hello-world``` image.
+   ```
+   $ sudo docker run hello-world
+   ```
