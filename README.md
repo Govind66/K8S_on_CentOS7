@@ -42,6 +42,23 @@ Kubernetes on both the Ubuntu nodes.
 ## Step2: K8S Deployment
 
 ### Prerequisits
+* To disable swap memory on both the nodes as Kubernetes does not perform properly on a system that is using swap memory.
+   ```
+   sudo swapoff -a 
+   ```
+
+* On Master to give itʼs unique hostname.
+```
+sudo hostnamectl set-hostname master-node 
+```
+* On Slave to give itʼs unique hostname.
+```
+sudo hostnamectl set-hostname slave-node
+```
+* Initialise kubernetes on master node.
+   ```
+   sudo kubeadm init --pod-network-cidr=172.31.0.0/16
+   ```
    * Installing kubeadm
    * Letting iptables see bridged traffic
    ```
@@ -83,6 +100,7 @@ Kubernetes on both the Ubuntu nodes.
 
    * You can leave SELinux enabled if you know how to configure it but it may require settings that are not supported by kubeadm.
       The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to tell it what to do.
+      
 
 
 
