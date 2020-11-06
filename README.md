@@ -12,6 +12,7 @@ Kubernetes on both the Ubuntu nodes.
    ```
    $sudo yum update -y       
    ```
+### First you need to install Docker contair for orchestration purpose
 * Add the docker repo in yum.repod
    ```
    sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo     
@@ -38,4 +39,7 @@ Kubernetes on both the Ubuntu nodes.
    ```
    $ sudo docker run hello-world
    ```
-This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits. Docker Engine is installed and running. You need to use ```sudo``` to run Docker commands. 
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits. Docker Engine is installed and running. You need to use ```sudo``` to run Docker commands.
+## Step2:
+      ## K8S Deployment
+
