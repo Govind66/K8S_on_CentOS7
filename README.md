@@ -98,10 +98,27 @@ Kubernetes on both the Ubuntu nodes.
    * You can leave SELinux enabled if you know how to configure it but it may require settings that are not supported by kubeadm.
       The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to tell it what to do.
       
-   * Initialise kubernetes on master node.
+ * Initialise kubernetes on master node.
    ```
    sudo kubeadm init --pod-network-cidr=172.31.0.0/16
    ```
+ ### The output of above command will give this  
+   ```
+   To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.31.38.20:6443 --token t1au9e.bcim6d05dw9wcz48 \
+    --discovery-token-ca-cert-hash sha256:bb3e1779c680c52d5df975285362b5f1e4f1f3b08c751b9ab058af4a7759ff52
+    ```
       
 
 
