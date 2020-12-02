@@ -146,6 +146,22 @@ Kubernetes on both the Ubuntu nodes.
    ```
    kubectl get pods --all-namespaces
    ```
+   
+ * Basic Command
+ ```kubectl attach centos -c centos -i -t
+kubectl run <name> --image=<required image name> -it 
+kubectl get pods
+kubectl get node
+kubectl get all
+kubectl run redhat --image=nginx --port=80
+kubectl run --help
+curl http://18.221.198.111:80
+kubectl get ns
+kubectl create ns hadoop
+kubectl get pods -n hadoop
+kubectl run ram --image=centos -it -n hadoop
+```
+ 
  
  
       
